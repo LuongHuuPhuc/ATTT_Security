@@ -93,14 +93,17 @@ int main(void){
   //In ra cipher text
   printf("Cipher text:");
   for(int i = 0; i < length; i++){
-    printf("%02x", cipher_text[i]);
+    printf("%02X", cipher_text[i]);
   }
   printf("\n");
 
+  rc4_decrypt(cipher_text, decrypted_text, key_stream, length);
   //In ra ban giai ma 
   printf("Decrypted text:");
   for(int i = 0; i < length; i++){
-    printf("%02x", decrypted_text[i]);
+    printf("%c", decrypted_text[i]);
   }
   printf("\n");
+
+  return 0;
 }
