@@ -75,3 +75,28 @@ for i,key in enumerate(key_3des, start=1):
 print("\nTesting 3DES...")
 encrypted_3des_data = triple_des_encrypt_decrypt(input_data, key_3des, 'encrypt')
 triple_des_encrypt_decrypt(encrypted_3des_data, key_3des, 'decrypt')
+
+######################################################
+#Input: 0x0123456789abcdef(hexa)
+#Key for DES: 0x0123456789ABCDEF
+#Key for 3DES: {0x0123456789ABCDEF, 0x9474B8E8C73BCA7C, 0x9474B8E8C73BC97D}
+
+# Ket qua ma hoa & giai ma bang Python so voi C:
+#Bang C:
+#     |-----------------------------|-----------------------------|
+#     |            DES              |            3DES             |
+#     |-----------------------------|-----------------------------|
+#     |Enryption: 56cc09e7cfdc4cef  |Encryption: 29aaf664657c5573 | 
+#Bang Python:
+#     |--------------------------------------------|--------------------------------------------|
+#     |                       DES                  |                      3DES                  |
+#     |--------------------------------------------|--------------------------------------------|
+#     |Enryption: 56cc09e7cfdc4cef086f9a1d74c94d4e |Encryption: 29aaf664657c5573d3f104f581ae8257| 
+#
+# Kiem tra do ngau nhien cua key bang cach kiem tra su phan bo cua bit 1 tren 64-bit: 
+# Neu ty le bit 1 lon hon 55% va be 45% thi key do khong tot
+# DES: 32/64, co 32-bit 1 tren tong 64-bit ~ Ty le 50% => Tot
+# 3DES: 
+#      Key2: 32/64, co 32-bit 1 tren tong 64-bit ~ Ty le 50 % => Tot
+#      Key2: 34/64, co 34-bit 1 tren tong 64-bit ~ Ty le 53 % => Tot
+#      key3: 35/64, co 35-bit 1 tren tong 64-bit ~ Ty le 55 % => Tot 
